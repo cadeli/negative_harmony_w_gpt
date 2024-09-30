@@ -11,62 +11,55 @@
 </head>
 
 <body>
-    <!--
-    <div class="hero">
-        <div class="container">
-            <h1>Unleash Your Sound Potential</h1>
-            <p>The ultimate toolkit for modern music producers.</p>
-            <p><i>Negative Harmonie Made Simple!</i></p>
-            <div class="cta-buttons">
-                <a href="#input-section">Get Started Now</a>
-                <a href="#watch-demo" style="border: 2px solid #00D2FF;">Watch Demo</a>
+
+
+
+    <header>
+        <h1>Negative Harmony Online Transpose</h1>
+    </header>
+
+    <section>
+        <article>
+            <div class="line-item" >Key:
+                <select name="tone_list" id="tone" class="key">
+                    <option value="C">C</option>
+                    <option value="C#">C#</option>
+                    <option value="D">D</option>
+                    <option value="D#">D#</option>
+                    <option value="E">E</option>
+                    <option value="E#">E#</option>
+                    <option value="F">F</option>
+                    <option value="A">A</option>
+                    <option value="A#">A#</option>
+                    <option value="B">B</option>
+                </select>
             </div>
-        </div>
-    </div>
--->
-    <div id="input-section" class="input-section">
-        <div class="container">
-            <h2>Transpose in Negative Harmony</h2>
-            <label for="tone">Key:</label>
+        </article>
 
-            <select name="tone_list" id="tone" class="key">
-                <option value="C">C</option>
-                <option value="C#">C#</option>
-                <option value="D">D</option>
-                <option value="D#">D#</option>
-                <option value="E">E</option>
-                <option value="E#">E#</option>
-                <option value="F">F</option>
-                <option value="A">A</option>
-                <option value="A#">A#</option>
-                <option value="B">B</option>
-            </select>
+        <article>
+            <h2>Key Sequence Transposer</h2>
+            <div class="container">
+                    <input type="text" id="notes" class="line-item" placeholder="Ex: C D E F G A B">
+                    <button onclick="transposer()"  class="line-item" >Transpose</button>
+                    <div id="resultatNotes"  class="line-item result">  </div>
+                <div>
+        </article>
 
-            <br>
-            <label for="notes">Note Sequence:(use space as separator)</label>
-            <input type="text" id="notes" placeholder="Ex: C D E F G A B">
-            <h2>Result:</h2>
-            <p id="resultatNotes"></p>
-            <br>
-            <label for="accord">Chord:</label>
-            <input type="text" id="accord" placeholder="Ex: Cmaj7, Dm7, Bm7b5">
-            <h2>Result:</h2>
-            <p id="resultatAccord"></p>
-            <br>
-            <button onclick="transposer()">Transpose</button>
+        <article>
+            <h2>Chord Transposer</h2>
+            <div class="container">
+            <input class="line-item"  type="text" id="accord" placeholder="Ex: Cmaj7, Dm7, Bm7b5"> 
+            <button  class="line-item"    onclick="transposer()">Transpose</button>
+            <div id="resultatAccord" class="line-item result"></div>
+            </div>
+        </article>
 
 
-
-        </div>
-    </div>
-
-    <div class="features">
-        <div class="container">
+        <article>
             <h2>What is it ?</h2>
             <div class="feature-item">Simple Tool for Negative Harmony. All written by chat GPT</div>
-        </div>
-    </div>
-
+            </div>
+    </section>
 
 
     <div class="footer">
@@ -78,6 +71,7 @@
             </div>
         </div>
     </div>
+
 
     <script>
 

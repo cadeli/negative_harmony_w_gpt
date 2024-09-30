@@ -115,7 +115,7 @@ function identifyChord(notes) {
     const key = intervals.join(",");
     const chordType = chordTypes[key];
 
-    return chordType ? `${tonic}${chordType}` : "Accord non identifié";
+    return chordType ? `${tonic}${chordType}` : "cannot read chord";
 }
 
 function transposer() {
@@ -133,7 +133,7 @@ function transposer() {
     if (notesInput) {
         const notesArray = notesInput.split(/\s+/);
         const transposedNotes = notesArray.map(note => transposeNoteInNegativeHarmony(note, toniqueIndex));
-        document.getElementById("resultatNotes").innerText = `Notes transposées : ${transposedNotes.join(" ")}`;
+        document.getElementById("resultatNotes").innerText = `${transposedNotes.join(" ")}`;
     }
 
     // Pour l'accord
@@ -141,6 +141,6 @@ function transposer() {
         const chordNotes = getChordNotes(accordInput);
         const transposedChordNotes = chordNotes.map(note => transposeNoteInNegativeHarmony(note, toniqueIndex));
         const transposedChordName = identifyChord(transposedChordNotes);
-        document.getElementById("resultatAccord").innerText = `Accord transposé : ${transposedChordName} (${transposedChordNotes.join(" ")})`;
+        document.getElementById("resultatAccord").innerText = `${transposedChordName} (${transposedChordNotes.join(" ")})`;
     }
 }
