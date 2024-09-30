@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,9 @@
 
     <script type="text/javascript" src="nhwg.js"></script>
 </head>
+
 <body>
-<!--
+    <!--
     <div class="hero">
         <div class="container">
             <h1>Unleash Your Sound Potential</h1>
@@ -20,24 +22,41 @@
                 <a href="#watch-demo" style="border: 2px solid #00D2FF;">Watch Demo</a>
             </div>
         </div>
-    </div>eeeee
+    </div>
 -->
     <div id="input-section" class="input-section">
         <div class="container">
             <h2>Transpose in Negative Harmony</h2>
-            <label for="tonalite">Key:</label>
-            <input type="text" id="tonalite" placeholder="Ex: C, D, G...">
+            <label for="tone">Key:</label>
+
+            <select name="tone_list" id="tone" class="key">
+                <option value="C">C</option>
+                <option value="C#">C#</option>
+                <option value="D">D</option>
+                <option value="D#">D#</option>
+                <option value="E">E</option>
+                <option value="E#">E#</option>
+                <option value="F">F</option>
+                <option value="A">A</option>
+                <option value="A#">A#</option>
+                <option value="B">B</option>
+            </select>
+
             <br>
             <label for="notes">Note Sequence:(use space as separator)</label>
             <input type="text" id="notes" placeholder="Ex: C D E F G A B">
+            <h2>Result:</h2>
+            <p id="resultatNotes"></p>
             <br>
             <label for="accord">Chord:</label>
             <input type="text" id="accord" placeholder="Ex: Cmaj7, Dm7, Bm7b5">
+            <h2>Result:</h2>
+            <p id="resultatAccord"></p>
             <br>
             <button onclick="transposer()">Transpose</button>
-            <h2>Result:</h2>
-            <p id="resultatNotes"></p>
-            <p id="resultatAccord"></p>
+
+
+
         </div>
     </div>
 
@@ -51,17 +70,18 @@
 
 
     <div class="footer">
-        <div class="container">         
+        <div class="container">
             <div>
-                <p>Email:  contact@ordrumbox.com </p>
-                <p>&copy; 2024 Ordrumbox Team.  | MIT License
+                <p>Email: contact@ordrumbox.com </p>
+                <p>&copy; 2024 Ordrumbox Team. | MIT License
                 </p>
             </div>
         </div>
     </div>
 
     <script>
-    
-</script>
+
+    </script>
 </body>
+
 </html>

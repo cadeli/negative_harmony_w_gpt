@@ -119,7 +119,7 @@ function identifyChord(notes) {
 }
 
 function transposer() {
-    const tonique = document.getElementById("tonalite").value.trim();
+    const tonique = document.getElementById("tone").value.trim();
     const notesInput = document.getElementById("notes").value.trim();
     const accordInput = document.getElementById("accord").value.trim();
     const toniqueIndex = noteToIndex(tonique);
