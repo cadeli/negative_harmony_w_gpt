@@ -1,12 +1,15 @@
 :root {
-    --bg-color: #12111a;
-    --card-bg: #1e1b2e;
-    --accent-color: #7c5cff;
-    --accent-hover: #6342e6;
-    --btn-secondary: #00d2ff;
-    --text-main: #f0f0f5;
-    --text-muted: #9a9aaf;
-    --input-bg: #2a273f;
+    --bg-color: #121417;          /* Fond général très sombre */
+    --card-bg: #1e2228;          /* Fond des cartes ardoise sombre */
+    --accent-color: #3b82f6;      /* Bleu sobre pour les actions principales */
+    --accent-hover: #2563eb;
+    --btn-secondary: #374151;     /* Gris pour les boutons audio */
+    --btn-secondary-hover: #4b5563;
+    --text-main: #f3f4f6;         /* Blanc cassé */
+    --text-muted: #9ca3af;        /* Gris clair */
+    --input-bg: #2a2f37;         /* Zone de saisie */
+    --result-bg: #162032;        /* Fond résultat subtilement bleuté */
+    --result-border: #2563eb;
     --border-radius: 8px;
 }
 
@@ -23,101 +26,145 @@ html, body {
 }
 
 header {
-    background: linear-gradient(135deg, #4c1d95, #7c5cff);
-    padding: 20px;
+    background-color: var(--card-bg);
+    padding: 24px 20px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 h1 {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     margin: 0;
-    color: #ffffff;
+    color: var(--text-main);
     letter-spacing: 0.5px;
 }
 
 h2 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    font-weight: 500;
     color: var(--text-main);
-    margin: 0 0 12px 0;
+    margin: 0 0 16px 0;
+    text-align: center;
 }
 
 section {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 0 15px;
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 0 16px;
 }
 
 article {
     background-color: var(--card-bg);
-    padding: 18px 20px;
-    margin-bottom: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
     border-radius: var(--border-radius);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
 }
 
+/* Conteneur principal centré en colonne */
 .container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
 }
 
-/* Form inputs & buttons shared styles */
+/* Groupes de contrôles sur une même ligne */
+.row-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 480px;
+    flex-wrap: wrap;
+}
+
+/* Inputs, Selects & Items */
 .line-item {
     font-size: 14px;
-    padding: 10px 14px;
+    padding: 10px 16px;
     border-radius: var(--border-radius);
     border: 1px solid rgba(255, 255, 255, 0.1);
     outline: none;
     margin: 0;
+    transition: all 0.2s ease;
 }
 
 input[type="text"].line-item, select.key {
     background-color: var(--input-bg);
-    color: #ffffff;
-    flex: 1 1 200px;
+    color: var(--text-main);
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
 }
 
 input[type="text"].line-item::placeholder {
     color: var(--text-muted);
 }
 
-/* Buttons */
-.container button {
+select.key {
+    cursor: pointer;
+    width: auto;
+}
+
+/* Boutons audio secondaires */
+.btn-audio {
+    background-color: var(--btn-secondary);
+    color: var(--text-main);
+    cursor: pointer;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.btn-audio:hover {
+    background-color: var(--btn-secondary-hover);
+}
+
+/* Bouton Transpose (Seul sur sa ligne) */
+.btn-transpose {
     background-color: var(--accent-color);
     color: #ffffff;
     font-weight: 600;
     cursor: pointer;
     border: none;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    width: 100%;
+    max-width: 220px;
+    padding: 11px 20px;
 }
 
-.container button:hover {
+.btn-transpose:hover {
     background-color: var(--accent-hover);
 }
 
-.container button:active {
+.btn-transpose:active, .btn-audio:active {
     transform: scale(0.98);
 }
 
 /* Zone de résultat */
 .container .result {
-    background-color: rgba(0, 210, 255, 0.1);
-    color: var(--btn-secondary);
-    border: 1px solid rgba(0, 210, 255, 0.3);
+    background-color: var(--result-bg);
+    color: var(--text-main);
+    border: 1px solid var(--result-border);
     font-weight: 600;
-    flex: 1 1 150px;
-    min-height: 38px;
+    width: 100%;
+    max-width: 320px;
+    min-height: 42px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .feature-item {
     color: var(--text-muted);
     font-size: 0.9rem;
+    text-align: center;
 }
 
 /* Tooltip */
@@ -125,7 +172,9 @@ input[type="text"].line-item::placeholder {
     position: relative;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    color: var(--text-muted);
 }
 
 .tooltip .tooltiptext {
@@ -154,7 +203,7 @@ input[type="text"].line-item::placeholder {
 /* Footer */
 .footer {
     text-align: center;
-    padding: 20px;
+    padding: 24px;
     color: var(--text-muted);
     font-size: 0.85rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
