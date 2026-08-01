@@ -1,97 +1,165 @@
-html {
-    font-family: sans-serif;
+:root {
+    --bg-color: #12111a;
+    --card-bg: #1e1b2e;
+    --accent-color: #7c5cff;
+    --accent-hover: #6342e6;
+    --btn-secondary: #00d2ff;
+    --text-main: #f0f0f5;
+    --text-muted: #9a9aaf;
+    --input-bg: #2a273f;
+    --border-radius: 8px;
 }
 
-body {
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
     margin: 0;
+    padding: 0;
 }
 
 header {
-    background: purple;
-    min-height: 100px;
-}
-
-footer {
-    background: purple;
-    height: 100px;
+    background: linear-gradient(135deg, #4c1d95, #7c5cff);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
-    text-align: center;
-    color: white;
-    line-height: 100px;
+    font-size: 1.5rem;
+    font-weight: 700;
     margin: 0;
+    color: #ffffff;
+    letter-spacing: 0.5px;
 }
 
 h2 {
-    color: white;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin: 0 0 12px 0;
 }
 
-
-.feature-item {
-    color: white;
+section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
 }
 
 article {
-    padding: 10px;
-    margin: 10px;
-    background-color: #393957;
+    background-color: var(--card-bg);
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .container {
-    text-align: center;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
 }
 
-.container button {
-    background-color: #00D2FF;
-    color: #000000;
-    cursor: pointer;
-}
-
-.container .result {
-    background-color: lightgray;
-}
-
+/* Form inputs & buttons shared styles */
 .line-item {
-    color: black;
-    background-color: white;
-    margin: 10px;
-    padding: 10px;
-    font-size: 18px;
-    margin-top: 20px;
-    width: 80%;
-    max-width: 300px;
-    border: none;
-    border-radius: 5px;
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    outline: none;
+    margin: 0;
 }
 
-/* Tooltip container */
+input[type="text"].line-item, select.key {
+    background-color: var(--input-bg);
+    color: #ffffff;
+    flex: 1 1 200px;
+}
+
+input[type="text"].line-item::placeholder {
+    color: var(--text-muted);
+}
+
+/* Buttons */
+.container button {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.container button:hover {
+    background-color: var(--accent-hover);
+}
+
+.container button:active {
+    transform: scale(0.98);
+}
+
+/* Zone de résultat */
+.container .result {
+    background-color: rgba(0, 210, 255, 0.1);
+    color: var(--btn-secondary);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    font-weight: 600;
+    flex: 1 1 150px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+}
+
+.feature-item {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Tooltip */
 .tooltip {
     position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-  }
-  
-  /* Tooltip text */
-  .tooltip .tooltiptext {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
-    background-color: black;
+    font-size: 12px;
+    background-color: #000;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-   
-    /* Position the tooltip text - see examples below! */
+    padding: 6px 10px;
+    border-radius: 4px;
     position: absolute;
-    z-index: 1;
-  }
-  
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.tooltip:hover .tooltiptext {
     visibility: visible;
-  }
+    opacity: 1;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer p {
+    margin: 4px 0;
+}
