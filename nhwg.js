@@ -164,3 +164,88 @@ function transposer() {
         }
     }
 }
+
+
+// --- MOTEUR AUDIO (Web Audio API) ---
+
+let audioCtx = null;
+
+function getAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    return audioCtx;
+}
+
+// Convertit un nom de note en fréquence (Octave 4 par défaut)
+function noteToFrequency(noteName, octave = 4) {
+    const cleanNote = noteName.trim().toUpperCase();
+    const index = noteToIndex(cleanNote);
+    if (index === -1) return null;
+
+    // A4 = 440Hz = Index 9 à l'octave 4
+    const midiNote = (octave + 1) * 12 + index;
+    return 440 * Math.pow(2, (midiNote - 69) / 12);
+}
+
+// Joue une note unique avec une enveloppe douce
+function playTone(freq, startTime, duration) {
+    if (!freq) return;
+    const ctx = getAudioContext();
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sine'; // 'sine' pour un son doux, 'triangle' pour un son plus chaud
+    osc.frequency.setValueAtTime(freq, startTime);
+
+    // Enveloppe d'attaque et de relâchement (éviter les clics audio)
+    gain.gain.setValueAtTime(0, startTime);
+    gain.gain.linearRampToValueAtTime(0.2, startTime + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(startTime);
+    osc.stop(startTime + duration);
+}
+
+// Joue la mélodie transposée note par note (séquence)
+function playTransposedMelody() {
+    const text = document.getElementById("resultatNotes").innerText.trim();
+    if (!text) return;
+
+    const notes = text.split(/\s+/);
+    const ctx = getAudioContext();
+    let now = ctx.currentTime;
+    const noteDuration = 0.4; // Durée de chaque note en secondes
+
+    notes.forEach((note, index) => {
+        const freq = noteToFrequency(note, 4);
+        playTone(freq, now + (index * noteDuration), noteDuration);
+    });
+}
+
+// Joue l'accord transposé (toutes les notes simultanément)
+function playTransposedChord() {
+    const text = document.getElementById("resultatAccord").innerText.trim();
+    if (!text) return;
+
+    // Extrait les notes entre parenthèses ex: "Dm7b5 (D F Ab C)" -> "D F Ab C"
+    const match = text.match(/\(([^)]+)\)/);
+    const notesText = match ? match[1] : text;
+    const notes = notesText.split(/\s+/);
+
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    const chordDuration = 1.5; // Durée de l'accord
+
+    notes.forEach((note) => {
+        const freq = noteToFrequency(note, 4);
+        playTone(freq, now, chordDuration);
+    });
+}
