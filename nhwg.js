@@ -249,3 +249,72 @@ function playTransposedChord() {
         playTone(freq, now, chordDuration);
     });
 }
+
+// --- FONCTIONS DE LECTURE AUDIO (ORIGINALE & TRANSPOSÉE) ---
+
+// 1. Mélodie Originale
+function playOriginalMelody() {
+    const input = document.getElementById("notes")?.value.trim();
+    if (!input) return;
+
+    const notes = input.split(/\s+/);
+    playMelodyArray(notes);
+}
+
+// 2. Mélodie Transposée (Négative)
+function playTransposedMelody() {
+    const text = document.getElementById("resultatNotes")?.innerText.trim();
+    if (!text) return;
+
+    const notes = text.split(/\s+/);
+    playMelodyArray(notes);
+}
+
+// 3. Accord Original
+function playOriginalChord() {
+    const input = document.getElementById("accord")?.value.trim();
+    if (!input) return;
+
+    const chordNotes = getChordNotes(input);
+    if (chordNotes.length > 0) {
+        playChordArray(chordNotes);
+    }
+}
+
+// 4. Accord Transposé (Négatif)
+function playTransposedChord() {
+    const text = document.getElementById("resultatAccord")?.innerText.trim();
+    if (!text) return;
+
+    // Extrait les notes entre parenthèses ex: "Dm7b5 (D F Ab C)" -> "D F Ab C"
+    const match = text.match(/\(([^)]+)\)/);
+    const notesText = match ? match[1] : text;
+    const notes = notesText.split(/\s+/);
+
+    playChordArray(notes);
+}
+
+
+// --- HELPER AUDIO (Génériques) ---
+
+function playMelodyArray(notesArray) {
+    const ctx = getAudioContext();
+    let now = ctx.currentTime;
+    const noteDuration = 0.4;
+
+    notesArray.forEach((note, index) => {
+        const freq = noteToFrequency(note, 4);
+        playTone(freq, now + (index * noteDuration), noteDuration);
+    });
+}
+
+function playChordArray(notesArray) {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    const chordDuration = 1.5;
+
+    notesArray.forEach((note) => {
+        const freq = noteToFrequency(note, 4);
+        playTone(freq, now, chordDuration);
+    });
+}
