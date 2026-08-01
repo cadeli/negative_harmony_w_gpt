@@ -18,9 +18,9 @@
         <h1>Negative Harmony Online Transpose</h1>
     </header>
 
-    <section>
+  <section>
         <article>
-            <div class="line-item tooltip" >Key:
+            <div class="line-item tooltip">Key:
                 <select name="tone_list" id="tone" class="key">
                     <option value="C">C</option>
                     <option value="C#">C#</option>
@@ -40,26 +40,31 @@
         <article>
             <h2>Key Sequence Transposer</h2>
             <div class="container">
-                    <input type="text" id="notes" class="line-item" placeholder="Ex: C D E F G A B">
-                    <button onclick="transposer()"  class="line-item" >Transpose</button>
-                    <div id="resultatNotes"  class="line-item result">  </div>
-                <div>
+                <input type="text" id="notes" class="line-item" placeholder="Ex: C D E F G A B">
+                <button onclick="transposer()" class="line-item">Transpose</button>
+                <div id="resultatNotes" class="line-item result"></div>
+                
+                <!-- AJOUT DU BOUTON PLAY MELODIE -->
+                <button onclick="playTransposedMelody()" class="line-item">Play 🎵</button>
+            </div>
         </article>
 
         <article>
             <h2>Chord Transposer</h2>
             <div class="container">
-            <input class="line-item"  type="text" id="accord" placeholder="Ex: Cmaj7, Dm7, Bm7b5"> 
-            <button  class="line-item"    onclick="transposer()">Transpose</button>
-            <div id="resultatAccord" class="line-item result"></div>
+                <input class="line-item" type="text" id="accord" placeholder="Ex: Cmaj7, Dm7, Bm7b5"> 
+                <button class="line-item" onclick="transposer()">Transpose</button>
+                <div id="resultatAccord" class="line-item result"></div>
+                
+                <!-- AJOUT DU BOUTON PLAY ACCORD -->
+                <button onclick="playTransposedChord()" class="line-item">Play 🎵</button>
             </div>
         </article>
 
-
         <article>
             <h2>What is it ?</h2>
-            <div class="feature-item">Simple Tool for Negative Harmony. All written by chat GPT</div>
-            </div>
+            <div class="feature-item">Simple Tool for Negative Harmony.</div>
+        </article>
     </section>
 
 
