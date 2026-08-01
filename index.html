@@ -16,9 +16,10 @@
     </header>
 
     <section>
+        <!-- TONALITY SELECTOR -->
         <article>
-            <div class="line-item tooltip">Key:
-                <select name="tone_list" id="tone" class="key">
+            <div class="tooltip">Key:
+                <select name="tone_list" id="tone" class="line-item key">
                     <option value="C">C</option>
                     <option value="C#">C#</option>
                     <option value="D">D</option>
@@ -41,13 +42,20 @@
         <article>
             <h2>Key Sequence Transposer</h2>
             <div class="container">
-                <input type="text" id="notes" class="line-item" placeholder="Ex: C D E F G A B">
-                <!-- Bouton lecture Originale -->
-                <button onclick="playOriginalMelody()" class="line-item">Play original 🔊</button>
-                <button onclick="transposer()" class="line-item">Transpose</button>
-                <div id="resultatNotes" class="line-item result"></div>
-                <!-- Bouton lecture Transposée -->
-                <button onclick="playTransposedMelody()" class="line-item">Play negative 🎵</button>
+                <!-- Ligne 1 : Champ de saisie + Bouton écoute originale -->
+                <div class="row-group">
+                    <input type="text" id="notes" class="line-item" placeholder="Ex: C D E F G A B">
+                    <button onclick="playOriginalMelody()" class="line-item btn-audio">Play 🔊</button>
+                </div>
+
+                <!-- Ligne 2 : Bouton Transpose Seul -->
+                <button onclick="transposer()" class="line-item btn-transpose">Transpose</button>
+
+                <!-- Ligne 3 : Résultat + Bouton écoute transposée -->
+                <div class="row-group">
+                    <div id="resultatNotes" class="line-item result"></div>
+                    <button onclick="playTransposedMelody()" class="line-item btn-audio">Play 🎵</button>
+                </div>
             </div>
         </article>
 
@@ -55,13 +63,20 @@
         <article>
             <h2>Chord Transposer</h2>
             <div class="container">
-                <input class="line-item" type="text" id="accord" placeholder="Ex: Cmaj7, Dm7, Bm7b5"> 
-                <!-- Bouton lecture Originale -->
-                <button onclick="playOriginalChord()" class="line-item">Play original 🔊</button>
-                <button class="line-item" onclick="transposer()">Transpose</button>
-                <div id="resultatAccord" class="line-item result"></div>
-                <!-- Bouton lecture Transposée -->
-                <button onclick="playTransposedChord()" class="line-item">Play negative 🎵</button>
+                <!-- Ligne 1 : Champ de saisie + Bouton écoute originale -->
+                <div class="row-group">
+                    <input type="text" id="accord" class="line-item" placeholder="Ex: Cmaj7, Dm7, Bm7b5">
+                    <button onclick="playOriginalChord()" class="line-item btn-audio">Play 🔊</button>
+                </div>
+
+                <!-- Ligne 2 : Bouton Transpose Seul -->
+                <button onclick="transposer()" class="line-item btn-transpose">Transpose</button>
+
+                <!-- Ligne 3 : Résultat + Bouton écoute transposée -->
+                <div class="row-group">
+                    <div id="resultatAccord" class="line-item result"></div>
+                    <button onclick="playTransposedChord()" class="line-item btn-audio">Play 🎵</button>
+                </div>
             </div>
         </article>
 
@@ -72,12 +87,8 @@
     </section>
 
     <div class="footer">
-        <div class="container">
-            <div>
-                <p>Email: contact@ordrumbox.com </p>
-                <p>&copy; 2024 Ordrumbox Team. | MIT License</p>
-            </div>
-        </div>
+        <p>Email: contact@ordrumbox.com</p>
+        <p>&copy; 2024 Ordrumbox Team. | MIT License</p>
     </div>
 
 </body>
